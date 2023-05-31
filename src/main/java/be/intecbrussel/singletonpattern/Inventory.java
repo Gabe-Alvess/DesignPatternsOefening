@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Inventory {
     private static Inventory inventory;
-    private final List<Product> products;
+    private final List<Product> productList;
 
     private Inventory() {
-        this.products = new ArrayList<>();
+        this.productList = new ArrayList<>();
     }
 
-    public static Inventory getInventory() {
+    public static Inventory getInstance() {
         if (inventory == null) {
             inventory = new Inventory();
         }
@@ -20,15 +20,17 @@ public class Inventory {
     }
 
     public void addProduct(Product product) {
-        products.add(product);
+        productList.add(product);
     }
 
     public void removeProduct(Product product) {
-        products.remove(product);
+        while (productList.contains(product)) {
+        productList.remove(product);
+        }
     }
 
-    public void showProductsList() {
-        products.forEach(product -> System.out.println(product.getName()));
+    public void showProductList() {
+        productList.forEach(System.out::println);
     }
 
 }

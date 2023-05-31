@@ -1,9 +1,9 @@
 package be.intecbrussel.factorypattern;
 
 public abstract class Computer {
-    private String ram;
-    private String cpu;
-    private String hdd;
+    private final String ram;
+    private final String cpu;
+    private final String hdd;
 
     public Computer(String ram, String cpu, String hdd) {
         this.ram = ram;
