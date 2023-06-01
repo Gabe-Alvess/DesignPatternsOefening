@@ -6,27 +6,19 @@ import be.intecbrussel.decoratorpattern.treedecorators.TreeTopper;
 
 public class App {
     public static void main(String[] args) {
-
-        RealChristmasTree rct = new RealChristmasTree();
-
         System.out.println("-----------------");
-        System.out.println("One Decoration");
+        System.out.println("Tree Decorators");
         System.out.println("-----------------");
 
-        TreeDecorator bubbleLights = new BubbleLights(rct);
-        TreeDecorator garland = new Garland(rct);
-        TreeDecorator treeTopper = new TreeTopper(rct);
+        RealChristmasTree realChristmasTree = new RealChristmasTree();
 
+        TreeDecorator bubbleLights = new BubbleLights(realChristmasTree);
+        TreeDecorator garland = new Garland(bubbleLights);
+        TreeDecorator treeTopper = new TreeTopper(garland);
+
+        System.out.println(realChristmasTree.decorate());
         System.out.println(bubbleLights.decorate());
         System.out.println(garland.decorate());
         System.out.println(treeTopper.decorate());
-
-
-        System.out.println("-----------------");
-        System.out.println("All Decorations");
-        System.out.println("-----------------");
-
-        TreeDecorator treeWithEveryThing = new TreeTopper(new BubbleLights(new Garland(rct)));
-        System.out.println(treeWithEveryThing.decorate());
     }
 }

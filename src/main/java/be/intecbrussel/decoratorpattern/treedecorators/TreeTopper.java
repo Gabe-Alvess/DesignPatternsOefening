@@ -10,6 +10,6 @@ public class TreeTopper extends TreeDecorator {
 
     @Override
     public String decorate() {
-        return super.decorate() + "with tree topper ";
+        return super.decorate() + "with a tree topper ";
     }
 }
