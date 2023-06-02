@@ -6,7 +6,7 @@ public class MergeSortAlgorithm implements ArraySortingAlgorithm {
         int length = array.length;
 
         if (length < 2) {
-            throw new IllegalArgumentException("Error - Invalid Array");
+            return array;
         }
 
         int mid = length / 2;
@@ -20,26 +20,29 @@ public class MergeSortAlgorithm implements ArraySortingAlgorithm {
             rHalf[i - mid] = array[i];
         }
 
-        merge(array, lHalf, rHalf, mid, length - mid);
+        sortArray(lHalf);
+        sortArray(rHalf);
 
-        return array;
+        return merge(array, lHalf, rHalf, mid, length - mid);
     }
 
-    private void merge(int[] array, int[] lHalf, int[] rHalf, int leftL, int rightL) {
-
+    private int[] merge(int[] array, int[] lHalf, int[] rHalf, int lengthLH, int lengthRH) {
         int i = 0, j = 0, k = 0;
-        while (i < leftL && j < rightL) {
+
+        while (i < lengthLH && j < lengthRH) {
             if (lHalf[i] <= rHalf[j]) {
                 array[k++] = lHalf[i++];
             } else {
                 array[k++] = rHalf[j++];
             }
         }
-        while (i < leftL) {
+        while (i < lengthLH) {
             array[k++] = lHalf[i++];
         }
-        while (j < rightL) {
+        while (j < lengthRH) {
             array[k++] = rHalf[j++];
         }
+
+        return array;
     }
 }
